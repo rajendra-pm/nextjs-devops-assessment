@@ -1,5 +1,5 @@
-# Use official Node.js LTS version with Debian (not Alpine)
-FROM node:18-bullseye AS builder
+# Builder stage
+FROM node:18-bullseye AS builder  # ✅ Debian-based Node image
 
 WORKDIR /app
 
@@ -9,14 +9,14 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the app
+# Copy all source code
 COPY . .
 
-# Build the Next.js app
+# Build Next.js app
 RUN npm run build
 
 # Production image
-FROM node:18-bullseye
+FROM node:18-bullseye  # ✅ Debian-based Node image
 
 WORKDIR /app
 
