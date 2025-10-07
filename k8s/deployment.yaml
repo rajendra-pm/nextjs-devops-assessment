@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nextjs-app
-          image: nextjs-demo      # ✅ local image name only
-          imagePullPolicy: Never  # ✅ force Kubernetes to use local image
+          image: nextjs-demo        # local Docker image
+          imagePullPolicy: Never    # important: use local image
           ports:
             - containerPort: 3000
