@@ -1,7 +1,6 @@
-# Use official Node.js LTS version
-FROM node:18-alpine AS builder
+# Use official Node.js LTS version with Debian (not Alpine)
+FROM node:18-bullseye AS builder
 
-# Set working directory
 WORKDIR /app
 
 # Copy package files
@@ -16,16 +15,14 @@ COPY . .
 # Build the Next.js app
 RUN npm run build
 
-# Use lightweight Node.js image for production
-FROM node:18-alpine
+# Production image
+FROM node:18-bullseye
 
 WORKDIR /app
 
-# Copy build output from builder
+# Copy build output
 COPY --from=builder /app ./
 
-# Expose the app port
 EXPOSE 3000
 
-# Start the app
 CMD ["npm", "start"]
