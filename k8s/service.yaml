@@ -5,7 +5,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app: nextjs-app
+    app: nextjs
   ports:
     - port: 3000
       targetPort: 3000
