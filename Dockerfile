@@ -1,6 +1,7 @@
-# Builder stage
-FROM node:18-bullseye AS builder
+# Use official Node.js LTS version
+FROM node:18-alpine AS builder
 
+# Set working directory
 WORKDIR /app
 
 # Copy package files
@@ -9,20 +10,22 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy all source code
+# Copy the rest of the app
 COPY . .
 
-# Build Next.js app
+# Build the Next.js app
 RUN npm run build
 
-# Production image
-FROM node:18-bullseye
+# Use lightweight Node.js image for production
+FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy build output
+# Copy build output from builder
 COPY --from=builder /app ./
 
+# Expose the app port
 EXPOSE 3000
 
+# Start the app
 CMD ["npm", "start"]
