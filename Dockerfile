@@ -1,5 +1,5 @@
 # Builder stage
-FROM node:18-bullseye AS builder  # ✅ Debian-based Node image
+FROM node:18-bullseye AS builder
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Production image
-FROM node:18-bullseye  # ✅ Debian-based Node image
+FROM node:18-bullseye
 
 WORKDIR /app
 
