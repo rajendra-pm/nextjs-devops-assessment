@@ -13,8 +13,8 @@ spec:
         app: nextjs-app
     spec:
       containers:
-        - name: nextjs-container
-          image: ghcr.io/rajendrapm/nextjs-demo:latest
+        - name: nextjs-app
+          image: ghcr.io/rajendra-pm/nextjs-demo:latest
           ports:
             - containerPort: 3000
           livenessProbe:
