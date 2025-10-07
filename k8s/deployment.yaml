@@ -14,8 +14,6 @@ spec:
     spec:
       containers:
         - name: nextjs-app
-          image: ghcr.io/rajendra-pm/nextjs-demo:latest
+          image: nextjs-demo        # Local Docker image loaded into Minikube
           ports:
             - containerPort: 3000
-      imagePullSecrets:
-        - name: ghcr-secret
